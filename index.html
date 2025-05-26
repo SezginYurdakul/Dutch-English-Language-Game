@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woord Lijst</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="start-screen" class="container">
+        <h1>Dutch Word Game</h1>
+        <button id="dutch-to-english-button" class="mode-button-dutch">Dutch to English</button>
+        <button id="english-to-dutch-button" class="mode-button-english">English to Dutch</button>
+    </div>
+
+    <div id="quiz-container" class="container">
+        <h2 id="quiz-title">Quiz Mode</h2>
+        <div id="timer">00:00</div>
+        <div id="dutch-word"></div>
+        <div id="options-container"></div>
+        <div id="feedback"></div>
+        <div id="stats-container">
+            <div>Correct: <span id="correct-score">0</span></div>
+            <div>Incorrect: <span id="wrong-score">0</span></div>
+            <div>Total: <span id="total-score">0</span></div>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
