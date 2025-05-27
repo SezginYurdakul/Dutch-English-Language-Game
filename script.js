@@ -47,6 +47,23 @@ function getDistractors(correctAnswer, count) {
     return distractors;
 }
 
+let questionCount = 10; // Default question count
+
+// Event listener for question count buttons
+const questionCountButtons = document.querySelectorAll('.question-count-button');
+questionCountButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove 'selected-button' class from all buttons
+        questionCountButtons.forEach(btn => btn.classList.remove('selected-button'));
+
+        // Add 'selected-button' class to the clicked button
+        button.classList.add('selected-button');
+
+        // Set the question count based on the selected button
+        questionCount = parseInt(button.getAttribute('data-count'), 10);
+        console.log(`Question count set to: ${questionCount}`);
+    });
+});
 // Start Timer
 // This function starts the timer and updates the timer element every second
 function startTimer() {
@@ -78,15 +95,18 @@ function updateScores() {
 // Load Next Word
 // This function loads the next word and generates answer options
 function loadNextWord() {
-    if (currentWordIndex >= shuffledWordList.length) {
+    if (currentWordIndex >= questionCount || currentWordIndex >= shuffledWordList.length) {
         stopTimer(); // Stop the timer
-        dutchWordEl.textContent = 'Congratulations!';
-        optionsContainerEl.innerHTML = `<p>You have completed all the words.</p>
-                                        <p>Time: ${timerEl.textContent}</p>
-                                        <button class="restart-button" onclick="prepareGame()">Restart</button>`;
-        feedbackEl.textContent = '';
+        showResults(); // Show the results
         return;
     }
+
+    // Update progress bar and text
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    progressBar.value = currentWordIndex + 1; // Update progress bar value
+    progressBar.max = questionCount; // Set max value to total questions
+    progressText.textContent = `Question ${currentWordIndex + 1} / ${questionCount}`; // Update progress text
 
     isChecking = false;
     feedbackEl.textContent = '';
@@ -196,6 +216,31 @@ function startGame() {
     startTimer(); // Start the timer
 }
 
+// Show Results
+// This function displays the results after the quiz is completed
+function showResults() {
+    const accuracy = (correctScore / questionCount) * 100;
+    let performance = '';
+
+    if (accuracy >= 90) {
+        performance = 'Excellent';
+    } else if (accuracy >= 70) {
+        performance = 'Good';
+    } else if (accuracy >= 50) {
+        performance = 'Average';
+    } else {
+        performance = 'Poor';
+    }
+
+    quizContainerEl.innerHTML = `
+        <h2>Quiz Completed!</h2>
+        <p>Performance: <strong>${performance}</strong></p>
+        <p>Accuracy: ${accuracy.toFixed(2)}%</p>
+        <p>Time Taken: ${timerEl.textContent}</p>
+        <button class="home-page" onclick="prepareGame()">Home Page</button>
+    `;
+}
+
 // Text-to-Speech
 // This function uses the SpeechSynthesis API to read the word aloud
 function speakWord(word, langCode) {
@@ -211,12 +256,12 @@ function speakWord(word, langCode) {
 
 // Prepare Game
 // This function resets the game and shows the start screen
-function prepareGame() {
+window.prepareGame = function prepareGame() {
     quizContainerEl.style.display = 'none'; // Hide the quiz screen
     startScreenEl.style.display = 'block'; // Show the start screen
     stopTimer(); // Stop/reset the timer
     timerEl.textContent = '00:00';
-}
+};
 
 // Event Listeners for Mode Selection
 dutchToEnglishButton.addEventListener('click', () => {

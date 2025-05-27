@@ -125,7 +125,7 @@ body {
     color: #f44336;
 }
 
-#quiz-container .restart-button {
+#quiz-container .home-page {
     padding: 10px 20px;
     font-size: 1.1em;
     background-color: #0275d8;
@@ -137,7 +137,7 @@ body {
     margin-top: 20px;
 }
 
-#quiz-container .restart-button:hover {
+#quiz-container .home-page:hover {
     background-color: #025aa5;
 }
 
@@ -184,4 +184,60 @@ body {
 #quiz-title{
     margin-bottom: 10px;
     color: #dd1e1e;
+}
+
+#question-count-buttons {
+    margin-bottom: 20px;
+}
+
+.question-count-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.question-count-button:hover {
+    background-color: #0056b3;
+}
+
+.selected-button {
+    background-color: #740c0c; /* Dark red */
+    color: white;
+    border: 1px solid #060100;
+}
+
+#progress-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#progress-text {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    display: block;
+    color: #333;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+}
+
+#progress-bar::-webkit-progress-bar {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+}
+
+#progress-bar::-webkit-progress-value {
+    background-color: #4caf50;
+    border-radius: 5px;
 }

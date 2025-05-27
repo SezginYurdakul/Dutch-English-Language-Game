@@ -10,11 +10,22 @@
 
     <div id="start-screen" class="container">
         <h1>Dutch Word Game</h1>
+        <p>Select the number of questions:</p>
+    <div id="question-count-buttons">
+        <button class="question-count-button" data-count="10">10 Questions</button>
+        <button class="question-count-button" data-count="20">20 Questions</button>
+        <button class="question-count-button" data-count="30">30 Questions</button>
+        <button class="question-count-button" data-count="50">50 Questions</button>
+    </div>
         <button id="dutch-to-english-button" class="mode-button-dutch">Dutch to English</button>
         <button id="english-to-dutch-button" class="mode-button-english">English to Dutch</button>
     </div>
 
     <div id="quiz-container" class="container">
+        <div id="progress-container">
+            <span id="progress-text">Question 1 / 10</span>
+            <progress id="progress-bar" value="1" max="10"></progress>
+        </div>
         <h2 id="quiz-title">Quiz Mode</h2>
         <div id="timer">00:00</div>
         <div id="dutch-word"></div>
