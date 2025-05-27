@@ -92,6 +92,8 @@ function updateScores() {
     totalScoreEl.textContent = totalScore;
 }
 
+let usedWords = []; // List of used words
+
 // Load Next Word
 // This function loads the next word and generates answer options
 function loadNextWord() {
@@ -112,7 +114,16 @@ function loadNextWord() {
     feedbackEl.textContent = '';
     feedbackEl.className = '';
 
-    const currentWord = shuffledWordList[currentWordIndex];
+    let currentWord;
+
+    // Ensure the word has not been used before
+    do {
+        currentWord = shuffledWordList[currentWordIndex];
+        currentWordIndex++;
+    } while (usedWords.includes(currentWord) && currentWordIndex < shuffledWordList.length);
+
+    // Add the word to the used words list
+    usedWords.push(currentWord);
 
     // Set the word and options based on the selected game mode
     if (gameMode === 'dutch-to-english') {
