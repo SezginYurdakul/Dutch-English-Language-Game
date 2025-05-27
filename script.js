@@ -116,11 +116,14 @@ function loadNextWord() {
 
     let currentWord;
 
-    // Ensure the word has not been used before
     do {
         currentWord = shuffledWordList[currentWordIndex];
+        if (!usedWords.includes(currentWord)) {
+            usedWords.push(currentWord); // Add the word to the used words list
+            break; // Exit the loop if the word is not used
+        }
         currentWordIndex++;
-    } while (usedWords.includes(currentWord) && currentWordIndex < shuffledWordList.length);
+    } while (currentWordIndex < shuffledWordList.length);
 
     // Add the word to the used words list
     usedWords.push(currentWord);
