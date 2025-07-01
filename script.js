@@ -199,6 +199,16 @@ function checkAnswer(selectedOption, correctOption, button) {
 
     setTimeout(loadNextWord, delayTime);
 }
+let selectedDifficulty = 'all'; // Varsayılan
+
+document.querySelectorAll('.difficulty-button').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.difficulty-button').forEach(b => b.classList.remove('difficulty-selected'));
+    this.classList.add('difficulty-selected');
+    selectedDifficulty = this.getAttribute('data-difficulty');
+  });
+});
+
 
 // Start Game
 // This function initializes the game based on the selected mode
@@ -224,6 +234,15 @@ function startGame() {
     updateScores(); // Reset and display scores
 
     shuffledWordList = [...wordList];
+
+        if (selectedDifficulty === 'all') {
+        shuffledWordList = [...wordList];
+    } else {
+        shuffledWordList = wordList.filter(
+            w => (w.difficulty || w.level) === selectedDifficulty
+        );
+    }
+    
     shuffleArray(shuffledWordList);
 
     loadNextWord(); // Load the first word
@@ -286,4 +305,11 @@ dutchToEnglishButton.addEventListener('click', () => {
 englishToDutchButton.addEventListener('click', () => {
     gameMode = 'english-to-dutch';
     startGame();
+});
+
+document.querySelectorAll('.difficulty-button').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.difficulty-button').forEach(b => b.classList.remove('difficulty-selected'));
+    this.classList.add('difficulty-selected');
+  });
 });

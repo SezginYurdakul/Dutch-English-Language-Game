@@ -241,3 +241,38 @@ body {
     background-color: #4caf50;
     border-radius: 5px;
 }
+
+/* Difficulty selection styles */
+#difficulty-buttons {
+    margin-bottom: 20px;
+}
+
+.difficulty-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 5px;
+    background-color: #011860;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.difficulty-button:hover {
+    background-color: #4caf50;
+}
+
+.difficulty-selected {
+    background-color: #4caf50;
+    color: white;
+    border: 1px solid #060100;
+}
+
+#difficulty-buttons + p,
+#difficulty-buttons ~ p {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
