@@ -1,32 +1,130 @@
+:root {
+  --color-primary: #0275d8;          /* Main Blue */
+  --color-primary-hover: #025aa5;    /* Main Blue (Hover) */
+  --color-secondary: #6a8d02;        /* Secondary Green */
+  --color-success: #4caf50;          /* Success Green */
+  --color-danger: #f44336;           /* Error Red */
+  --color-warning: #dbae0c;          /* Warning Yellow */
+
+  --bg-main: #fcfcfb;                /* Main Background */
+  --bg-container: #EEEDEB;           /* Container Background */
+  --bg-container-alt: #ECEDB0;       /* Alternate Container Background */
+  --bg-button-neutral: #eee;         /* Neutral Button Background */
+
+  --text-primary: #222;              /* Main Text Color */
+  --text-on-primary: #fff;           /* Text on Colored Button */
+  --text-on-danger: #fff;            /* Text on Red Button */
+
+  --border-color: #bdbdbd;           /* Border Color */
+  --border-color-light: #ccc;        /* Light Border */
+  --border-color-table: #d1d1d1;     /* Table Border */
+  --bg-table-header: #f5f5f5;        /* Table Header Background */
+  --bg-table-row-alt: #fafafa;       /* Table Alternate Row */
+  --bg-table-row-hover: #f1f1f1;     /* Table Row Hover */
+  --bg-modal-btn: #5a5c02;           /* Modal Button */
+  --bg-modal-btn-hover: #a7dc0a;     /* Modal Button Hover */
+  --bg-history-btn-hover: #8fed0a;   /* History Button Hover */
+  --bg-dutch: #dbae0cab;               /* Dutch Mode */
+  --bg-english: #08b5d3;             /* English Mode */
+  --color-difficulty: #f2be9d;       /* Difficulty Button */
+  --color-difficulty-hover: #cc0303; /* Difficulty Hover */
+}
+
+/* General page layout */
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f4f4f4;
+    background-color: var(--bg-main);
     margin: 0;
 }
 
+/* Main container style */
 .container {
-    background-color: #fff;
-    padding: 30px 40px; /* Slightly wider */
+    background-color: var(--bg-container);
+    padding: 30px 40px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 450px; /* Slightly wider */
+    width: 450px;
+    border: 1px solid var(--border-color);
 }
 
+/* Username screen styling */
+#username-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 30vh;
+  background: var(--bg-container-alt);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 40px 24px;
+  margin: 40px auto;
+  max-width: 450px;
+}
+
+#username-screen h2 {
+  margin-bottom: 30px;
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+#username-input {
+  width: 80%;
+  margin-bottom: 30px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid var(--color-primary-hover);
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s;
+  background: #fff;
+}
+
+#username-input:focus {
+  border: 1.5px solid var(--color-warning);
+}
+
+#username-submit {
+  width: 60%;
+  padding: 12px 0;
+  background: var(--color-primary);
+  color: var(--text-on-primary);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+#username-submit:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Start screen headings */
 #start-screen h1 {
     margin-bottom: 40px;
-    color: #333;
+    color: var(--color-primary);
 }
 
+#start-screen h4 {
+    color: var(--color-danger);
+}
+
+/* Start button style */
 #start-button {
     padding: 20px 40px;
     font-size: 1.8em;
-    background-color: #5cb85c;
-    color: white;
+    background-color: var(--color-success);
+    color: var(--text-on-primary);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -34,32 +132,35 @@ body {
 }
 
 #start-button:hover {
-    background-color: #4cae4c;
+    background-color: #218838;
 }
 
+/* Quiz container is hidden initially */
 #quiz-container {
-    display: none; /* Hidden initially */
+    display: none;
 }
 
+/* Main word display */
 #dutch-word {
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 30px;
-    color: #333;
-    min-height: 60px; /* Prevent jumping when the word changes */
+    color: var(--color-primary-hover);
+    min-height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Option buttons */
 #options-container button {
     display: block;
     width: 100%;
     padding: 15px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color-light);
     border-radius: 5px;
-    background-color: #eee;
+    background-color: var(--bg-button-neutral);
     font-size: 1.2em;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -70,15 +171,15 @@ body {
 }
 
 #options-container button.correct {
-    background-color: #4CAF50;
-    color: white;
-    border-color: #4CAF50;
+    background-color: var(--color-success);
+    color: var(--text-on-primary);
+    border-color: var(--color-success);
 }
 
 #options-container button.wrong {
-    background-color: #f44336;
-    color: white;
-    border-color: #f44336;
+    background-color: var(--color-danger);
+    color: var(--text-on-danger);
+    border-color: var(--color-danger);
 }
 
 #options-container button:disabled {
@@ -86,23 +187,25 @@ body {
     opacity: 0.7;
 }
 
+/* Quiz stats container */
 #stats-container {
     margin-top: 30px;
     font-size: 1.2em;
     display: flex;
     justify-content: space-around;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color-light);
     padding-top: 20px;
 }
 
 #stats-container div {
-    flex: 1; /* Equal distribution */
+    flex: 1;
 }
 
 #stats-container span {
     font-weight: bold;
 }
 
+/* Timer style */
 #timer {
     font-size: 1.5em;
     margin-bottom: 20px;
@@ -110,6 +213,7 @@ body {
     font-weight: bold;
 }
 
+/* Feedback text */
 #feedback {
     margin-top: 15px;
     font-size: 1.3em;
@@ -118,18 +222,19 @@ body {
 }
 
 .correct-text {
-    color: #4CAF50;
+    color: var(--color-success);
 }
 
 .wrong-text {
-    color: #f44336;
+    color: var(--color-danger);
 }
 
+/* Home page button in quiz */
 #quiz-container .home-page {
     padding: 10px 20px;
     font-size: 1.1em;
-    background-color: #0275d8;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--text-on-primary);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -138,14 +243,15 @@ body {
 }
 
 #quiz-container .home-page:hover {
-    background-color: #025aa5;
+    background-color: var(--color-primary-hover);
 }
 
+/* Mode selection buttons */
 .mode-button-dutch {
     padding: 20px 40px;
     font-size: 1.5em;
-    background-color: #dbae0c;
-    color: white;
+    background-color: var(--bg-dutch);
+    color: var(--text-on-primary);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -158,8 +264,8 @@ body {
 .mode-button-english {
     padding: 20px 40px;
     font-size: 1.5em;
-    background-color: #0f3e74;
-    color: white;
+    background-color: var(--bg-english);
+    color: var(--text-primary);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -173,19 +279,22 @@ body {
     background-color: #c30aed;
 }
 
+/* Quiz container backgrounds for modes */
 .quiz-container-dutch {
-    background-color: #dbae0c; /* Light blue for Dutch to English */
+    background-color: var(--bg-dutch); 
 }
 
 .quiz-container-english {
-    background-color: #95dfec; /* Light pink for English to Dutch */
+    background-color: var(--bg-english);
 }
 
+/* Quiz title */
 #quiz-title{
     margin-bottom: 10px;
     color: #dd1e1e;
 }
 
+/* Question count buttons */
 #question-count-buttons {
     margin-bottom: 20px;
 }
@@ -195,7 +304,7 @@ body {
     font-size: 1em;
     margin: 5px;
     background-color: #007bff;
-    color: white;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -203,15 +312,17 @@ body {
 }
 
 .question-count-button:hover {
-    background-color: #0056b3;
+    background-color: #041793;
+    color: white;
 }
 
 .selected-button {
-    background-color: #740c0c; /* Dark red */
+    background-color: #041793;
     color: white;
     border: 1px solid #060100;
 }
 
+/* Progress bar styles */
 #progress-container {
     margin-bottom: 20px;
     text-align: center;
@@ -251,22 +362,29 @@ body {
     padding: 10px 20px;
     font-size: 1em;
     margin: 5px;
-    background-color: #011860;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: #f2be9d;      
+    color: #222;
+    border: 1.5px solid #bdbdbd;    
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+    font-weight: 500;
+    box-shadow: 0 1px 4px rgba(180,180,180,0.10);
 }
 
 .difficulty-button:hover {
-    background-color: #4caf50;
+    background-color: #cc0303;      
+    color: #ffffff;
+    border: 1.5px solid #757575;  
+    font-weight: bold; 
 }
 
 .difficulty-selected {
-    background-color: #4caf50;
-    color: white;
-    border: 1px solid #060100;
+    background-color: #cc0303;    
+    color: #fff;
+    border: 2px solid #222;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(100,100,100,0.13);
 }
 
 #difficulty-buttons + p,
@@ -275,4 +393,117 @@ body {
     margin-bottom: 8px;
     font-weight: bold;
     color: #333;
+}
+
+/* Show history button */
+#show-history {
+    padding: 12px 28px;
+    font-size: 0.9em;
+    background-color: #6a8d02;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 18px auto 0 auto;
+    display: block;
+    box-shadow: 0 2px 8px rgba(106,27,154,0.08);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+#show-history:hover {
+    background-color: #8fed0a;
+    color: #0e0d0d;
+    box-shadow: 0 4px 16px rgba(106,27,154,0.18);
+}
+
+/* History modal button */
+#history-modal button {
+    padding: 10px 28px;
+    font-size: 1em;
+    background-color: #5a5c02;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 18px auto 0 auto;
+    display: block;
+    box-shadow: 0 2px 8px rgba(106,27,154,0.08);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+#history-modal button:hover {
+    background-color: #a7dc0a;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(106,27,154,0.18);
+}
+
+/* History Table Styles */
+#history-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 1em;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#history-list th,
+#history-list td {
+    border: 1px solid #d1d1d1;
+    padding: 10px 14px;
+    text-align: center;
+    min-width: 80px;
+    word-break: break-word;
+}
+
+#history-list th {
+    background-color: #f5f5f5;
+    color: #222;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+#history-list tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+#history-list tr:hover {
+    background-color: #f1f1f1;
+    transition: background 0.2s;
+}
+
+/* Responsive table for mobile */
+@media (max-width: 700px) {
+    #history-list table, #history-list thead, #history-list tbody, #history-list th, #history-list td, #history-list tr {
+        display: block;
+    }
+    #history-list tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #eee;
+    }
+    #history-list td, #history-list th {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    #history-list td:before, #history-list th:before {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #666;
+        content: attr(data-label);
+        text-align: left;
+    }
+    #history-list th {
+        background: #f5f5f5;
+        color: #222;
+    }
 }

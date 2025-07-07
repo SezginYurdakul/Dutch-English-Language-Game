@@ -7,21 +7,35 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="username-screen" class="container">
+      <h2>Enter your username</h2>
+      <input type="text" id="username-input" placeholder="Username" />
+      <button id="username-submit">Continue</button>
+    </div>
     <div id="start-screen" class="container">
       <h1>Dutch Word Game</h1>
-      
-      <p>Select the number of questions:</p>
+      <h4>Select the number of questions:</h4>
       <div id="question-count-buttons">
-        <button class="question-count-button" data-count="10">10 Questions</button>
-        <button class="question-count-button" data-count="20">20 Questions</button>
-        <button class="question-count-button" data-count="30">30 Questions</button>
-        <button class="question-count-button" data-count="50">50 Questions</button>
+        <button class="question-count-button" data-count="10">
+          10 Questions
+        </button>
+        <button class="question-count-button" data-count="20">
+          20 Questions
+        </button>
+        <button class="question-count-button" data-count="30">
+          30 Questions
+        </button>
+        <button class="question-count-button" data-count="50">
+          50 Questions
+        </button>
       </div>
 
-      <p>Select difficulty:</p>
+      <h4>Select difficulty:</h4>
       <div id="difficulty-buttons">
         <button class="difficulty-button" data-difficulty="easy">Easy</button>
-        <button class="difficulty-button" data-difficulty="medium">Medium</button>
+        <button class="difficulty-button" data-difficulty="medium">
+          Medium
+        </button>
         <button class="difficulty-button" data-difficulty="hard">Hard</button>
         <button class="difficulty-button" data-difficulty="all">All</button>
       </div>
@@ -32,14 +46,25 @@
       <button id="english-to-dutch-button" class="mode-button-english">
         English to Dutch
       </button>
+      <!-- History Modal -->
+      <button id="show-history">Show History</button>
     </div>
+          <div id="history-modal" style="display: none">
+        <h2>History</h2>
+        <div id="history-list"></div>
+        <button
+          onclick="document.getElementById('history-modal').style.display='none'"
+        >
+          Close
+        </button>
+      </div>
 
     <div id="quiz-container" class="container" style="display: none">
       <div id="progress-container">
         <span id="progress-text">Question 1 / 10</span>
         <progress id="progress-bar" value="1" max="10"></progress>
       </div>
-      <h2 id="quiz-title">Quiz Mode</h2>
+      <h2 id="quiz-title"></h2>
       <div id="timer">00:00</div>
       <div id="dutch-word"></div>
       <div id="options-container"></div>
@@ -50,7 +75,6 @@
         <div>Total: <span id="total-score">0</span></div>
       </div>
     </div>
-
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

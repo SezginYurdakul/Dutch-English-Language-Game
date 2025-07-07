@@ -1,8 +1,8 @@
 // js/utils.js
 
 /**
- * Bir dizinin elemanlarını rastgele karıştırır (Fisher-Yates Algoritması).
- * @param {Array} array Karıştırılacak dizi.
+ * Shuffles the elements of an array in place (Fisher-Yates Algorithm).
+ * @param {Array} array The array to shuffle.
  */
 export function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -12,19 +12,19 @@ export function shuffleArray(array) {
 }
 
 /**
- * Verilen metni, belirtilen dilde sesli olarak okur.
- * @param {string} word Seslendirilecek kelime.
- * @param {string} langCode Dil kodu (örn: 'nl-NL', 'en-US').
+ * Speaks the given word in the specified language using the browser's SpeechSynthesis API.
+ * @param {string} word The word to be spoken.
+ * @param {string} langCode The language code (e.g., 'nl-NL', 'en-US').
  */
 export function speakWord(word, langCode) {
   if ("speechSynthesis" in window) {
     const synth = window.speechSynthesis;
-    // Bekleyen konuşmaları iptal et
+    // Cancel any pending speech
     synth.cancel(); 
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = langCode;
     synth.speak(utterance);
   } else {
-    console.warn("SpeechSynthesis bu tarayıcıda desteklenmiyor.");
+    console.warn("SpeechSynthesis is not supported in this browser.");
   }
 }

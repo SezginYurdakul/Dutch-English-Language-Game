@@ -8,7 +8,7 @@ export const gameState = {
   correctScore: 0,
   wrongScore: 0,
   questionCount: 10,
-  selectedDifficulty: "all",
+  selectedDifficulty: "easy",
   shuffledWordList: [],
   isChecking: false,
   timerInterval: null,
