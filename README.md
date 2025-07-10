@@ -88,3 +88,73 @@ words/
 ## License
 
 This project is open-source and available under the MIT License.
+
+## Test Setup and Running
+
+### Installing and Running Jest
+
+1. Open a terminal in your project folder.
+2. Install Jest by running:
+    ```bash
+    npm install --save-dev jest
+    ```
+3. Add the following to your `package.json` file (create it if it doesn't exist):
+    ```json
+    {
+      "scripts": {
+        "test": "jest"
+      }
+    }
+    ```
+4. Create your test files, for example `js/utils.test.js`.
+5. To run the tests, use:
+    ```bash
+    npm test
+    ```
+
+### Running the Project on Another Computer
+
+To run the project on another computer, make sure there is a `package.json` file in the root directory. This file ensures that dependencies (e.g., Jest) are installed automatically.
+
+Example `package.json` content:
+
+```json
+{
+  "name": "dutch-word-game",
+  "version": "1.0.0",
+  "description": "A Dutch-English word quiz game.",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
+```
+
+Installation steps:
+
+1. Open a terminal in the project folder.
+2. Run:
+    ```bash
+    npm install
+    ```
+3. To run the tests:
+    ```bash
+    npm test
+    ```
+
+### Notes
+
+- For using Jest with ES6 modules, you may need additional Jest configuration or Babel. If you encounter errors, see the [Jest documentation](https://jestjs.io/docs/ecmascript-modules).
+- For browser-specific APIs (e.g., `window`, `document`), you will need to use mocks in your tests.
+- **If you see an error about `jest-environment-jsdom` not found, install it with:**
+    ```bash
+    npm install --save-dev jest-environment-jsdom
+    ```
+    After installing, you can re-run your tests with:
+    ```bash
+    npm test
+    ```
+- **Test files can be placed either next to the files they test (e.g., `js/utils.test.js`) or in a separate `test/` directory (e.g., `test/utils.test.js`).** If you use a `test/` directory, update your Jest configuration if necessary. Both approaches are valid; choose the one that fits your project structure best.

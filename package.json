@@ -1,0 +1,13 @@
+{
+  "name": "dutch-word-game",
+  "version": "1.0.0",
+  "description": "A Dutch-English word quiz game.",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^30.0.4"
+  }
+}

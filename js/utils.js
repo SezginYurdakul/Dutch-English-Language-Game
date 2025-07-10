@@ -19,10 +19,22 @@ export function shuffleArray(array) {
 export function speakWord(word, langCode) {
   if ("speechSynthesis" in window) {
     const synth = window.speechSynthesis;
-    // Cancel any pending speech
-    synth.cancel(); 
+    synth.cancel();
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = langCode;
+
+    // Try to select a matching voice for the language (especially for mobile)
+    const voices = synth.getVoices();
+    // Find a voice that matches the requested language code
+    const matchingVoice = voices.find(
+      (v) =>
+        v.lang &&
+        v.lang.toLowerCase().startsWith(langCode.toLowerCase().slice(0, 2))
+    );
+    if (matchingVoice) {
+      utterance.voice = matchingVoice;
+    }
+
     synth.speak(utterance);
   } else {
     console.warn("SpeechSynthesis is not supported in this browser.");
