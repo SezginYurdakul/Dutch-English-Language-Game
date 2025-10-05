@@ -1,7 +1,7 @@
 // js/game.js
 
 import { gameState } from "./state.js";
-import { shuffleArray, speakWord } from "./utils.js";
+import { shuffleArray, speakWord, setCookie, getCookie } from "./utils.js";
 import {
   updateScores,
   updateTimerDisplay,
@@ -135,8 +135,9 @@ export function startGame() {
 }
 
 export function saveGameHistory() {
-  const username = localStorage.getItem("woordquiz_username") || "unknown";
-  const history = JSON.parse(localStorage.getItem("woordquiz_history") || "{}");
+  const username = getCookie("woordquiz_username") || "unknown";
+  const historyData = getCookie("woordquiz_history");
+  const history = historyData ? JSON.parse(historyData) : {};
   const userHistory = history[username] || [];
   userHistory.push({
     date: new Date().toLocaleString(),
@@ -152,5 +153,5 @@ export function saveGameHistory() {
     time: document.getElementById("timer").textContent,
   });
   history[username] = userHistory;
-  localStorage.setItem("woordquiz_history", JSON.stringify(history));
+  setCookie("woordquiz_history", JSON.stringify(history)); // Save to cookie for 1 year
 }

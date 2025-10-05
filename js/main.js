@@ -2,26 +2,56 @@
 
 import { gameState } from "./state.js";
 import { startGame } from "./game.js";
+import { setCookie, getCookie } from "./utils.js";
 
 // --- EVENT LISTENERS ---
 
-// Show username screen if not set
-if (!localStorage.getItem("woordquiz_username")) {
-  document.getElementById("username-screen").style.display = "block";
+// Check if user exists and show appropriate landing screen
+const existingUsername = getCookie("woordquiz_username");
+if (!existingUsername) {
+  // New user - show username input
+  document.getElementById("landing-screen").style.display = "block";
+  document.getElementById("new-user-welcome").style.display = "block";
   document.getElementById("start-screen").style.display = "none";
 } else {
-  document.getElementById("username-screen").style.display = "none";
-  document.getElementById("start-screen").style.display = "block";
+  // Returning user - show personalized welcome
+  document.getElementById("landing-screen").style.display = "block";
+  document.getElementById("returning-user-welcome").style.display = "block";
+  document.getElementById("username-display").textContent = existingUsername;
+  document.getElementById("start-screen").style.display = "none";
+  // Also set the username in start screen for when they continue
+  document.getElementById("start-screen-username").textContent = existingUsername;
 }
 
+// New user submits username
 document.getElementById("username-submit").addEventListener("click", () => {
   const username = document.getElementById("username-input").value.trim();
   if (username) {
-    localStorage.setItem("woordquiz_username", username);
-    document.getElementById("username-screen").style.display = "none";
-    document.getElementById("start-screen").style.display = "block";
+    setCookie("woordquiz_username", username); // Save to cookie for 1 year
+    showGameScreen();
   }
 });
+
+// Returning user continues to game
+document.getElementById("continue-to-game").addEventListener("click", () => {
+  showGameScreen();
+});
+
+// User wants to change username
+document.getElementById("change-username").addEventListener("click", () => {
+  document.getElementById("returning-user-welcome").style.display = "none";
+  document.getElementById("new-user-welcome").style.display = "block";
+  document.getElementById("username-input").value = "";
+  document.getElementById("username-input").focus();
+});
+
+// Helper function to show game screen
+function showGameScreen() {
+  const username = getCookie("woordquiz_username");
+  document.getElementById("start-screen-username").textContent = username || "Guest";
+  document.getElementById("landing-screen").style.display = "none";
+  document.getElementById("start-screen").style.display = "block";
+}
 
 // Question Count Selection
 document.querySelectorAll(".question-count-button").forEach((button) => {
@@ -75,12 +105,17 @@ function initializeDefaultSelections() {
 }
 
 document.getElementById('show-history').addEventListener('click', () => {
-    document.getElementById("username-screen").style.display = "none";
+    document.getElementById("landing-screen").style.display = "none";
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("quiz-container").style.display = "none";
-    const username = localStorage.getItem('woordquiz_username');
-    const history = JSON.parse(localStorage.getItem('woordquiz_history') || '{}');
+    const username = getCookie('woordquiz_username');
+    const historyData = getCookie('woordquiz_history');
+    const history = historyData ? JSON.parse(historyData) : {};
     const userHistory = history[username] || [];
+    
+    // Set the username in history modal
+    document.getElementById('history-username').textContent = username || 'Unknown User';
+    
     let html = '';
 if (userHistory.length === 0) {
     html = '<p>No history found.</p>';
