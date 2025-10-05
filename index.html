@@ -7,12 +7,28 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="username-screen" class="container">
-      <h2>Enter your username</h2>
-      <input type="text" id="username-input" placeholder="Username" />
-      <button id="username-submit">Continue</button>
+    <!-- Landing Page / Username Entry Screen -->
+    <div id="landing-screen" class="container">
+      <div id="new-user-welcome" style="display: none;">
+        <h1>🎮 Welcome to Dutch Word Game!</h1>
+        <h3>Ready to test your Dutch-English skills?</h3>
+        <p>Please enter your username to get started:</p>
+        <input type="text" id="username-input" placeholder="Enter your username" />
+        <button id="username-submit">Start Playing</button>
+      </div>
+      <div id="returning-user-welcome" style="display: none;">
+        <h1>🎉 Welcome Back!</h1>
+        <h2 id="user-greeting">Enjoy the game, <span id="username-display"></span>!</h2>
+        <p>Ready for another round of Dutch-English challenges?</p>
+        <button id="continue-to-game">Continue to Game</button>
+        <button id="change-username">Change Username</button>
+      </div>
     </div>
     <div id="start-screen" class="container">
+      <div class="player-info">
+        <span class="player-label">Player:</span>
+        <span id="start-screen-username" class="player-name"></span>
+      </div>
       <h1>Dutch Word Game</h1>
       <h4>Select the number of questions:</h4>
       <div id="question-count-buttons">
@@ -50,7 +66,13 @@
       <button id="show-history">Show History</button>
     </div>
           <div id="history-modal" style="display: none">
-        <h2>History</h2>
+        <div class="history-header">
+          <h2>📊 Game History</h2>
+          <div class="user-info">
+            <span class="user-label">Player:</span>
+            <span id="history-username" class="username-highlight"></span>
+          </div>
+        </div>
         <div id="history-list"></div>
         <button
           onclick="document.getElementById('history-modal').style.display='none'"
