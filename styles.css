@@ -54,7 +54,7 @@ body {
 
 /* Landing screen styling */
 #landing-screen {
-  display: flex;
+  display: none; /* Initially hidden, shown by JavaScript */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -67,18 +67,31 @@ body {
   max-width: 500px;
 }
 
+#landing-screen.show {
+  display: flex;
+}
+
 /* Common styling for both welcome sections */
 #new-user-welcome {
+  display: none;
   text-align: center;
 }
 
+#new-user-welcome.show {
+  display: block;
+}
+
 #returning-user-welcome {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 5px;
+}
+
+#returning-user-welcome.show {
+  display: flex;
 }
 
 /* New user welcome styling */

@@ -10,13 +10,13 @@ import { setCookie, getCookie } from "./utils.js";
 const existingUsername = getCookie("woordquiz_username");
 if (!existingUsername) {
   // New user - show username input
-  document.getElementById("landing-screen").style.display = "block";
-  document.getElementById("new-user-welcome").style.display = "block";
+  document.getElementById("landing-screen").classList.add("show");
+  document.getElementById("new-user-welcome").classList.add("show");
   document.getElementById("start-screen").style.display = "none";
 } else {
   // Returning user - show personalized welcome
-  document.getElementById("landing-screen").style.display = "block";
-  document.getElementById("returning-user-welcome").style.display = "block";
+  document.getElementById("landing-screen").classList.add("show");
+  document.getElementById("returning-user-welcome").classList.add("show");
   document.getElementById("username-display").textContent = existingUsername;
   document.getElementById("start-screen").style.display = "none";
   // Also set the username in start screen for when they continue
@@ -39,8 +39,8 @@ document.getElementById("continue-to-game").addEventListener("click", () => {
 
 // User wants to change username
 document.getElementById("change-username").addEventListener("click", () => {
-  document.getElementById("returning-user-welcome").style.display = "none";
-  document.getElementById("new-user-welcome").style.display = "block";
+  document.getElementById("returning-user-welcome").classList.remove("show");
+  document.getElementById("new-user-welcome").classList.add("show");
   document.getElementById("username-input").value = "";
   document.getElementById("username-input").focus();
 });
@@ -49,7 +49,7 @@ document.getElementById("change-username").addEventListener("click", () => {
 function showGameScreen() {
   const username = getCookie("woordquiz_username");
   document.getElementById("start-screen-username").textContent = username || "Guest";
-  document.getElementById("landing-screen").style.display = "none";
+  document.getElementById("landing-screen").classList.remove("show");
   document.getElementById("start-screen").style.display = "block";
 }
 
