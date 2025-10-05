@@ -12,13 +12,11 @@ if (!existingUsername) {
   // New user - show username input
   document.getElementById("landing-screen").classList.add("show");
   document.getElementById("new-user-welcome").classList.add("show");
-  document.getElementById("start-screen").style.display = "none";
 } else {
   // Returning user - show personalized welcome
   document.getElementById("landing-screen").classList.add("show");
   document.getElementById("returning-user-welcome").classList.add("show");
   document.getElementById("username-display").textContent = existingUsername;
-  document.getElementById("start-screen").style.display = "none";
   // Also set the username in start screen for when they continue
   document.getElementById("start-screen-username").textContent = existingUsername;
 }
@@ -50,7 +48,7 @@ function showGameScreen() {
   const username = getCookie("woordquiz_username");
   document.getElementById("start-screen-username").textContent = username || "Guest";
   document.getElementById("landing-screen").classList.remove("show");
-  document.getElementById("start-screen").style.display = "block";
+  document.getElementById("start-screen").classList.add("show");
 }
 
 // Question Count Selection

@@ -247,7 +247,12 @@ body {
 
 /* Start screen container positioning */
 #start-screen {
+    display: none; /* Initially hidden */
     position: relative;
+}
+
+#start-screen.show {
+    display: block;
 }
 
 /* Player info in start screen */
