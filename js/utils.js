@@ -40,3 +40,41 @@ export function speakWord(word, langCode) {
     console.warn("SpeechSynthesis is not supported in this browser.");
   }
 }
+
+/**
+ * Sets a cookie with the given name, value, and expiry (1 year by default).
+ * @param {string} name The name of the cookie.
+ * @param {string} value The value of the cookie.
+ * @param {number} days Number of days until expiry (default: 365).
+ */
+export function setCookie(name, value, days = 365) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/`;
+}
+
+/**
+ * Gets a cookie value by name.
+ * @param {string} name The name of the cookie.
+ * @returns {string|null} The cookie value or null if not found.
+ */
+export function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) {
+      return decodeURIComponent(c.substring(nameEQ.length, c.length));
+    }
+  }
+  return null;
+}
+
+/**
+ * Deletes a cookie by setting its expiry to the past.
+ * @param {string} name The name of the cookie to delete.
+ */
+export function deleteCookie(name) {
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+}
