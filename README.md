@@ -35,7 +35,7 @@ A simple quiz game to practice Dutch-to-English and English-to-Dutch translation
         * Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
         * Right-click on `index.html` and select **Open with Live Server**.
         ```
-4. Open the project in your browser at `http://localhost:8000` (or the URL provided by your server).
+4. Open the project in your browser at `http://127.0.0.1:5500` (or the URL provided by your server).
 
 ## File Structure
 

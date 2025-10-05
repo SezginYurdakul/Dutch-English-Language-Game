@@ -112,4 +112,4 @@ This document lists the main functions in the project, their purpose, and how th
 - `wordList.js` provides the vocabulary data.
 
 ---
-bir dil oyun uygulamasi icin bu yapi ve dosya yapisi dogru mu ?
+Is this structure and file organization correct for a language learning game application?
